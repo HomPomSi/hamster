@@ -1,0 +1,17 @@
+8x8
+########
+#      #
+#      #
+#      #
+#      #
+#      #
+#      #
+########
+Every row below the territory pattern is not affected by the parser, comments should be placed here
+
+Territory are defined the following:
+    - First line represents the size of the territory <ROWS>x<COLUMNS>
+    - The following <ROWS> lines represent each row of the territory
+    - # represent a wall tile
+    - 0 - 9 represent the amount of grains on the tile
+    - an empty tile is also interpreted as 0 grains
