@@ -84,7 +84,9 @@ class Territory(object):
     def setPortal(self, source: datatypes.location.Location, destination: datatypes.location.Location) -> None:
         if source.row_index > self._size.height - 1 or source.column_index > self._size.width - 1:  
             if destination.row_index > self._size.height - 1 or destination.column_index > self._size.width - 1:  
-                raise exceptions.territory_exceptin.OutOfTerritoryBoundariesExcception(f"Trying to set wall")
+                raise exceptions.territory_exceptin.OutOfTerritoryBoundariesExcception(f"Trying to set portal")
+            elif self._grid[destination.row_index][destination.column_index].is_portal() or self._grid[source.row_index][source.column_index].is_portal():
+                raise exceptions.territory_exception.PortalInterceptionException(f"{source} or {destination} already contains portal")
         portal = territory.portal.Portal(source, destination)
         self._grid[source.row_index][source.column_index].portal = portal
         self._grid[destination.row_index][destination.column_index].portal = portal

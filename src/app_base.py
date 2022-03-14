@@ -9,6 +9,8 @@ import territory.parser
 
 import exceptions.max_steps_exception
 
+import typing
+
 TEST = False
 #TEST = True 
 if TEST:
@@ -17,11 +19,12 @@ if TEST:
 
 
 class AppBase(object):
-    def __init__(self, ter: str = "") -> None:
-        if ter == "":
-            raise ArgumentError("Missing territory path")
-        self._territory = territory.parser.Parser().parse(ter)
-        print(self._territory)
+    def __init__(self, ter: typing.Union[str, territory.territory.Territory]) -> None:
+        if isinstance(ter, str):
+            self._territory = territory.parser.Parser().parse(ter)
+        elif isinstance(ter, territory.territory.Territory):
+            self._territory = ter
+
         self._game = hamstergame.hamstergame.Hamstergame(self._territory)
         self._game._MAX_STEPS = 999999
         self._paule = hamster.hamster.Hamster(self._game, datatypes.location.Location(1, 1))

@@ -25,3 +25,7 @@ class OutOfTerritoryBoundariesException(TerritoryException):
         self._msg = "Out of territory boundaries."
         super().__init__(f"{self._msg} {msg}")
 
+class PortalInterceptionException(TerritoryException):
+    def __init__(self, msg: str = "") -> None:
+        self._msg = "Two portals are trying to use the same tile."
+        super().__init__(f"{self._msg} {msg}")
