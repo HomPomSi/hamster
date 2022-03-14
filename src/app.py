@@ -1,24 +1,26 @@
 #! /usr/bin/python3
 
-import hamster.hamster
-import hamstergame.hamstergame
+import app_base
 
-from datatypes import location
-from territory import parser
 
-class App(object):
-    def __init__(self) -> None:
-        self._territory = parser.Parser.parse("../resources/territories/blank-8x8.ter")
-        self._territory = parser.Parser.parse("../resources/territories/max-grain-8x8.ter")
-        self._game = hamstergame.hamstergame.Hamstergame(self._territory)
-        self._paule = hamster.hamster.Hamster(self._game, location.Location(1, 1))
+class App(app_base.AppBase):
+    def __init__(self):
+        #super().__init__("../resources/territories/max-grain-8x8.ter")
+        super().__init__("../resources/territories/portal-5x5.ter")
+   
     
-    def main(self) -> None:    
-        self._paule.pickGrain()
+    def _pick_all(self):
+        while self._paule.grainAvailable():
+            self._paule.pickGrain()
+            
+            
 
-    def run(self) -> None:
-        self._game.run()
+    def _execute_hamstergame(self) -> None:
+        while self._paule.frontIsClear():
+            self._pick_all()
+            self._paule.move()
+            if self._paule.portalIsOpen():
+                self._paule.teleport()
+        self._pick_all()
 
-if __name__ == "__main__":
-    app = App()
-    app.run()
+App()

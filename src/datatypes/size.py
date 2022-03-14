@@ -2,8 +2,9 @@
 
 
 
-
 class Size(object):
+    """
+    """
     def __init__(self, width: int, height: int) -> None:
         self._width = width
         self._height = height
@@ -35,3 +36,8 @@ class Size(object):
 
     def __str__(self):
         return f"{self._width} x {self._height}"
+
+
+
+if __name__ == "__main__":
+    pass
