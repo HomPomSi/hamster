@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.cfg
+hamster_simulation/__init__.py
+hamster_simulation.egg-info/PKG-INFO
+hamster_simulation.egg-info/SOURCES.txt
+hamster_simulation.egg-info/dependency_links.txt
+hamster_simulation.egg-info/requires.txt
+hamster_simulation.egg-info/top_level.txt
