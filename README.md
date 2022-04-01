@@ -203,13 +203,14 @@ def pickAllGrains():
 # Information all about the code and structure
 ### Project structure
 ```
-| Hamster
+| hamster_simulation 
 + - +
 |   | README.md
 |   | src
 |   + - +
 |   |   | app_example.py
 |   |   | app_base.py
+|   |   | tests.py
 |   |   | __init__.py
 |   |   | datatypes
 |   |   + - +
@@ -295,5 +296,17 @@ def pickAllGrains():
 |   |   |   |   | portal.xfc
 |   |   |   |   | tile_base.xfc
 |   |   |   |   | wall.xfc
+|   |   | 
+|   |   | simulation_data
+|   |   + - +
+|   |   |   | ...
 ```
+
+### Workflow
+|Start|App()|Object creation of the app itself|
+|-|-|-|
+|0|App.\_\_init__|calls parent constructor with given territory as paramter|
+|1|AppBase.\_\_init__|calculates the simulation data via App.\_execute_hamstergame|
+|2|Hamstergame.run|render the simulation data till interrupted|
+|End|Hamstergame.save_data|saves the calculated simulation data to file hamstersimulation.[time in ms].sim in resources/simulation_data|
 
