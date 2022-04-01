@@ -11,11 +11,6 @@ import exceptions.max_steps_exception
 
 import typing
 
-TEST = False
-#TEST = True 
-if TEST:
-    import test.verify_territories
-    quit()
 
 
 class AppBase(object):
@@ -26,7 +21,7 @@ class AppBase(object):
             self._territory = ter
 
         self._game = hamstergame.hamstergame.Hamstergame(self._territory)
-        self._game._MAX_STEPS = 999999
+        self._game._MAX_STEPS = 1048576
         self._paule = hamster.hamster.Hamster(self._game, datatypes.location.Location(1, 1))
         try:
             self._execute_hamstergame()

@@ -36,7 +36,7 @@ class Hamstergame(object):
 
         self._steps = 0
         self._MAX_STEPS = 9999
-    
+
     @property
     def territory(self) -> territory.territory.Territory:
         return self._territory
