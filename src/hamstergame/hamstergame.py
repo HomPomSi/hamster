@@ -78,10 +78,23 @@ class Hamstergame(object):
                     state_index += 1
                     if state_index >= len(self._render_map):
                         running = False
-
+                        print("[DEBUG] - finished rendering inital run")
 
             self._clock.tick(self._tickrate)
     
+    def save_data(self) -> None:
+        print("[DEBUG] - Saving simulation data")
+        name = f"hamstersimulation.{int(time.time())}.sim"
+        with open(f"../resources/simulation_data/{name}", "a") as file:
+            file.write("base_map\n")
+            for row in self._render_map.base_map:
+                file.write(f"{row}\n")
+            file.write("state_map\n")
+            for index in range(len(self._render_map)):
+                state = self._render_map.get_state(index)
+                file.write(f"{str(state[0][0])},{str(state[0][1])},{state[1]}\n")
+        print(f"[DEBUG] - Successfully saved simulation data to {name}")
+
     def _load_images(self) -> dict:
         images = {}
         for entity in os.listdir("../resources/images"):

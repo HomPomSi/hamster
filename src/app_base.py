@@ -13,7 +13,16 @@ import typing
 
 
 
+
 class AppBase(object):
+    """
+    Parent class for managing the hamster simulation.
+    Forces the user to implement an _execute_hamstergame method and runs/renders
+    the simulation when object is created.
+    To avoid in getting stuck in calculating the simulation and not getting to render 
+    it, the _execute_hamstergame method is terminated after MAX_STEPS has been reached.
+    The simulation data is saved at the end.
+    """
     def __init__(self, ter: typing.Union[str, territory.territory.Territory]) -> None:
         if isinstance(ter, str):
             self._territory = territory.parser.Parser().parse(ter)
@@ -29,7 +38,13 @@ class AppBase(object):
             print("[WARNING] - reached MAX_STEPS, starting render process")
         except Exception as e:
             print(f"[WARNING] - other exception occured during execution, starting render process\n[ERROR] - {e}\n")
-        self._game.run()
+        print("[DEBUG] - starting render process")
+        try:
+            self._game.run()
+        except:
+            print("[DEBUG] - render process has been interrupted")
+        finally:
+            self._game.save_data()
 
     def _execute_hamstergame(self) -> None:    
         raise NotImplementedError("implement meeeeee")

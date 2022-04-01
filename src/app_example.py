@@ -5,8 +5,8 @@ import app_base
 
 class App(app_base.AppBase):
     def __init__(self):
-        #super().__init__("../resources/territories/max-grain-8x8.ter")
-        super().__init__("../resources/territories/portal-5x5.ter")
+        super().__init__("../resources/territories/max-grain-8x8.ter")
+        #super().__init__("../resources/territories/portal-5x5.ter")
    
     
     def _pick_all(self):
